@@ -145,14 +145,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dd88aa9d7a9b044ba6493ccef9609f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 5
+  Speed: 2
   rb: {fileID: 433656334}
-  gravity: 20
-  jumpforce: 2
-  playerHeight: 2
-  whatisGround:
-    serializedVersion: 2
-    m_Bits: 4294967295
+  maxSpeed: 10
+  curMaxSpeed: 0
+  isGrounded: 0
+  jump: {x: 0, y: 0, z: 0}
+  jumps: 0
+  gravity: 10
+  jumpforce: 3
+  PlayerHeight: 1.5
   orientation: {fileID: 433656332}
   moveDirection: {x: 0, y: 0, z: 0}
 --- !u!54 &433656334
@@ -169,7 +171,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!1 &705507993
 GameObject:
@@ -445,6 +447,10 @@ PrefabInstance:
     - target: {fileID: 4788791755918961300, guid: bfd2187f7c7d0d6429c4446310a11ef8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6404267037618627140, guid: bfd2187f7c7d0d6429c4446310a11ef8, type: 3}
+      propertyPath: m_Height
+      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bfd2187f7c7d0d6429c4446310a11ef8, type: 3}

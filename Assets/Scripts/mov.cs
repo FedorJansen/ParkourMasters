@@ -11,7 +11,7 @@ public class mov : MonoBehaviour
 
     public float maxSpeed;
     public float curMaxSpeed;
-    private bool walking = true ; 
+    private bool walking = true;
 
     public bool isGrounded;
     public Vector3 jump;
@@ -32,12 +32,12 @@ public class mov : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         jump = new Vector3(0.0f, 2.0f, 0.0f);
+        orientation = rb.transform;
     }
 
-    void OnCollisionStay()
+    void OnCollisionStay(Collision other)
     {
         isGrounded = true;
-        
     }
 
     private void OnCollisionExit(Collision collision)
@@ -80,11 +80,11 @@ public class mov : MonoBehaviour
             rb.velocity = Vector3.ClampMagnitude(rb.velocity, curMaxSpeed);
         }
 
-        if (Input.GetKey(KeyCode.LeftShift)) 
+        if (Input.GetKey(KeyCode.LeftShift))
         {
             walking = false;
             curMaxSpeed = maxSpeed * 2;
-        }else
+        } else
         {
             walking = true;
             curMaxSpeed = maxSpeed;
@@ -96,7 +96,7 @@ public class mov : MonoBehaviour
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
         if (!walking)
         {
-           Speed = Speed * 2;
+            Speed = Speed * 2;
         }
         if (Input.GetKey(KeyCode.W) && isGrounded)
         {
@@ -104,20 +104,17 @@ public class mov : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.S) && isGrounded || Input.GetKey(KeyCode.D) && isGrounded || Input.GetKey(KeyCode.A) && isGrounded)
         {
-            rb.AddForce(10f * (Speed / 2) * moveDirection.normalized, ForceMode.Force);
+            rb.AddForce(10f * (Speed - 1f) * moveDirection.normalized, ForceMode.Force);
         }
-        else if(isGrounded)
+        else if (isGrounded)
         {
-            rb.velocity = new Vector3(0, (rb.velocity.y) , 0);
+            rb.velocity = new Vector3(0, (rb.velocity.y), 0);
         }
         if (!walking)
         {
             Speed = Speed / 2;
         }
 
-
     }
-
-
 
 }

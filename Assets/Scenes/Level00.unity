@@ -133,30 +133,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4788791755918961300, guid: bfd2187f7c7d0d6429c4446310a11ef8, type: 3}
   m_PrefabInstance: {fileID: 1474119451}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &433656333
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 433656328}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1dd88aa9d7a9b044ba6493ccef9609f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Speed: 2
-  rb: {fileID: 433656334}
-  maxSpeed: 10
-  curMaxSpeed: 0
-  isGrounded: 0
-  jump: {x: 0, y: 0, z: 0}
-  jumps: 0
-  gravity: 10
-  jumpforce: 3
-  PlayerHeight: 1.5
-  orientation: {fileID: 433656332}
-  moveDirection: {x: 0, y: 0, z: 0}
 --- !u!54 &433656334
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -404,6 +380,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 72390482542910692, guid: bfd2187f7c7d0d6429c4446310a11ef8, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 4788791755918961300, guid: bfd2187f7c7d0d6429c4446310a11ef8, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -451,6 +431,10 @@ PrefabInstance:
     - target: {fileID: 6404267037618627140, guid: bfd2187f7c7d0d6429c4446310a11ef8, type: 3}
       propertyPath: m_Height
       value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6404267037618627140, guid: bfd2187f7c7d0d6429c4446310a11ef8, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bfd2187f7c7d0d6429c4446310a11ef8, type: 3}
@@ -629,6 +613,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2318712745249802112, guid: 29cf028aa4d95f644aa478fbc07dedd4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7916070977680261971, guid: 29cf028aa4d95f644aa478fbc07dedd4, type: 3}
+      propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7916070977680261971, guid: 29cf028aa4d95f644aa478fbc07dedd4, type: 3}
+      propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

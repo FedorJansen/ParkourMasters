@@ -19,7 +19,7 @@ public class mov : MonoBehaviour
 
     public float gravity;
     public float jumpforce;
-    bool grounded;
+    public float groundDrag;
     public float PlayerHeight;
 
     float horizontalInput;
@@ -59,6 +59,11 @@ public class mov : MonoBehaviour
             isGrounded = false;
             jumps--;
         }
+
+        if (isGrounded)
+            rb.drag = groundDrag;
+        else
+            rb.drag = 0;
 
     }
 
@@ -110,10 +115,15 @@ public class mov : MonoBehaviour
         {
             rb.velocity = new Vector3(0, (rb.velocity.y), 0);
         }
+        else if (!isGrounded)
+        {
+            rb.AddForce(10f * (Speed /6) * moveDirection.normalized, ForceMode.Force);
+        }
         if (!walking)
         {
             Speed = Speed / 2;
         }
+        Debug.Log(isGrounded);
 
     }
 

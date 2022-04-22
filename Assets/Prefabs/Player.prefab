@@ -118,6 +118,7 @@ MonoBehaviour:
   jumps: 0
   gravity: 20
   jumpforce: 3
+  groundDrag: 5
   PlayerHeight: 2
   orientation: {fileID: 0}
   moveDirection: {x: 0, y: 0, z: 0}

@@ -99,7 +99,7 @@ public class mov : MonoBehaviour
         Debug.Log(CenterOfmass);
             RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit, 2, Mask, QueryTriggerInteraction.Ignore))
+            if (Physics.Raycast(ray, out hit, 1.2f, Mask, QueryTriggerInteraction.Ignore))
             {
                 Debug.DrawLine(ray.origin, hit.point, Color.red);
                 isGrounded = true;
@@ -109,7 +109,7 @@ public class mov : MonoBehaviour
             }
             else
             {
-                Debug.DrawLine(ray.origin, ray.origin + ray.direction * 2, Color.green);
+                Debug.DrawLine(ray.origin, ray.origin + ray.direction * 1.2f, Color.green);
                 jumps = 0;
                 rb.drag = 0;
             }

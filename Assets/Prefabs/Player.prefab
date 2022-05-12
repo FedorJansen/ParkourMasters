@@ -130,8 +130,10 @@ MonoBehaviour:
   Mask:
     serializedVersion: 2
     m_Bits: 0
+  FloorObject: {fileID: 0}
   orientation: {fileID: 0}
   moveDirection: {x: 0, y: 0, z: 0}
+  CenterOfmass: {x: 0, y: 0, z: 0}
 --- !u!114 &-5864100298108865091
 MonoBehaviour:
   m_ObjectHideFlags: 0

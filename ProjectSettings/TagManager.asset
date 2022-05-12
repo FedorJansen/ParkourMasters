@@ -8,6 +8,8 @@ TagManager:
   - PowerUp
   - Floor
   - Chapter1
+  - C1
+  - moons
   layers:
   - Default
   - TransparentFX

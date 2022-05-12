@@ -61,8 +61,7 @@ public class cameraSelect : MonoBehaviour
 
     public void Display(string chapter, string planet, string level)
     {
-        Chapter.text = chapter;
-        Level.text = level;
+        Chapter.text = chapter + " - "+ level ;
         Planet.text = planet;
     }
 
@@ -72,8 +71,7 @@ public class cameraSelect : MonoBehaviour
         float height = MainCam.pixelHeight;
 
         Chapter.transform.position = new Vector3((width / (width / 10)) + 200, height/ 2 +160, 0);
-        Level.transform.position = new Vector3((width / (width / 10)) + 200, height / 2 + 90, 0);
-        Planet.transform.position = new Vector3((width / (width / 10)) + 200, height / 2 , 0);
+        Planet.transform.position = new Vector3((width / (width / 10)) + 200, height / 2 +90, 0);
         backgroundC.transform.position = new Vector3((width / (width / 10)) + 200, height / 2 +100, 0);
     }
 }

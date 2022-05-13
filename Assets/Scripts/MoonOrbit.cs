@@ -13,6 +13,6 @@ public class MoonOrbit : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        this.transform.Rotate(Vector3.up * 0.35f);
+        this.transform.Rotate(Vector3.up * 0.0035f);
     }
 }

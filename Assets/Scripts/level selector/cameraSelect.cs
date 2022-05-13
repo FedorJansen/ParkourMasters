@@ -18,7 +18,6 @@ public class cameraSelect : MonoBehaviour
 
     void Start()
     {
-        Cursor.visible = false;
     }
 
 
@@ -43,7 +42,14 @@ public class cameraSelect : MonoBehaviour
             {
                 Pos(30, other.transform.position, 40);
                 Levelsinfo.enabled = true;
-                Display("C - 1", "astriod", other.name);
+                Display("C - 1", "Astriod", other.name);
+            }
+            else
+            if (other.CompareTag("moons"))
+            {
+                Pos(30, other.transform.position, 60);
+                Levelsinfo.enabled = true;
+                Display("Chapter - 2", "Moon", "");
             }
 
         }

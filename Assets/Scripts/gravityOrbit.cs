@@ -14,6 +14,14 @@ public class gravityOrbit : MonoBehaviour
         }
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.GetComponent<gravityC>())
+        {
+            other.GetComponent<gravityC>().gravity = null;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {

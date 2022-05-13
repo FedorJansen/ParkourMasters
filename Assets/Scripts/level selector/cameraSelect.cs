@@ -12,7 +12,7 @@ public class cameraSelect : MonoBehaviour
 
     public Canvas Levelsinfo;
     public TextMeshProUGUI Chapter;
-    public TextMeshProUGUI Level;
+    public TextMeshProUGUI Lock;
     public TextMeshProUGUI Planet;
     public RawImage backgroundC;
 
@@ -29,39 +29,45 @@ public class cameraSelect : MonoBehaviour
         Ray ray = MainCam.ScreenPointToRay(Input.mousePosition);
         RaycastHit hitInfo;
 
-        if(Physics.Raycast (ray, out hitInfo))
+        if (Physics.Raycast(ray, out hitInfo))
         {
-            if (hitInfo.rigidbody.gameObject.CompareTag("Chapter1"))
+            GameObject other = hitInfo.rigidbody.gameObject;
+            if (other.CompareTag("Chapter1"))
             {
-                Fov(30);
+                Pos(30, other.transform.position, 100);
                 Levelsinfo.enabled = true;
                 Display("Chapter - 1", "Earth", "");
-            }else
-            if (hitInfo.rigidbody.gameObject.CompareTag("C1"))
+            }
+            else
+            if (other.CompareTag("C1"))
             {
-                Fov(10);
+                Pos(30, other.transform.position, 40);
                 Levelsinfo.enabled = true;
-                Display("C - 1", "astriod", "");
+                Display("C - 1", "astriod", other.name);
             }
 
         }
         else
         {
-            Fov(60);
+            Pos(60, this.transform.position, 0);
             Levelsinfo.enabled = false;
         }
 
     }
 
 
-    public void Fov(float fov)
+    public void Pos(float fov, Vector3 pos, float High)
     {
+        float xpos = MainCam.transform.position.x;
+        float ypos = MainCam.transform.position.y;
+        float zpos = MainCam.transform.position.z;
         MainCam.fieldOfView = Mathf.Lerp(MainCam.fieldOfView, fov, t);
+        MainCam.transform.position = new Vector3(Mathf.Lerp(xpos, pos.x, t), Mathf.Lerp(ypos, pos.y + High, t), Mathf.Lerp(zpos, pos.z, t));
     }
 
     public void Display(string chapter, string planet, string level)
     {
-        Chapter.text = chapter + " - "+ level ;
+        Chapter.text = chapter + " - " + level;
         Planet.text = planet;
     }
 

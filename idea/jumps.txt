@@ -1,0 +1,4 @@
+op spatie hold +1 per sec
+voor jump
+zodat hoelanger je hem inhoudt de hoger je gaat op loslaten van de spatie knop
+max velo 20

@@ -36,6 +36,7 @@ public class mov : MonoBehaviour
 
     public Transform orientation;
     public Vector3 moveDirection;
+    public Vector3 jumpDirection;
     public Vector3 CenterOfmass;
 
 
@@ -58,39 +59,39 @@ public class mov : MonoBehaviour
     }
 
 
-    private void OnCollisionEnter(Collision other)
-    {
-        if (other.gameObject.CompareTag("Floor"))
-        {
-            isGrounded = true;
-            jumped = false;
-            jumps = 1;
-            rb.drag = groundDrag;
-        }
+    //private void OnCollisionEnter(Collision other)
+    //{
+    //    if (other.gameObject.CompareTag("Floor"))
+    //    {
+    //        isGrounded = true;
+    //        jumped = false;
+    //        jumps = 1;
+    //        rb.drag = groundDrag;
+    //    }
 
-    }
+    //}
 
-    private void OnCollisionExit(Collision other)
-    {
-        if (other.gameObject.CompareTag("Floor"))
-        {
-            jumps = 0;
-            rb.drag = 0;
-        }
-    }
+    //private void OnCollisionExit(Collision other)
+    //{
+    //    if (other.gameObject.CompareTag("Floor"))
+    //    {
+    //        jumps = 0;
+    //        rb.drag = 0;
+    //    }
+    //}
 
     public void PlayerDrag()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if(jumps >= 1)
+            if (jumps >= 1)
             {
-                rb.AddForce(jump * jumpforce, ForceMode.Impulse);
+                rb.AddForce(jumpforce * orientation.up, ForceMode.Impulse);
                 jumps--;
             }
             else if(PowerUps.SPowerUps.jetpack.Equals(true) && !jumped)
             {
-                rb.AddForce(jump * jumpforce, ForceMode.Impulse);
+                rb.AddForce(jumpforce * orientation.up, ForceMode.Impulse);
                 jumped = true;
             }
 
@@ -107,25 +108,24 @@ public class mov : MonoBehaviour
     {
         MovePlayer();
 
-        //CenterOfmass = Vector3.up;
-        //    Ray ray = new Ray(transform.position, -CenterOfmass);
-        //Debug.Log(CenterOfmass);
-        //    RaycastHit hit;
+        CenterOfmass = Vector3.up;
+        Ray ray = new Ray(transform.position, -orientation.up);
+        RaycastHit hit;
 
-        //    if (Physics.Raycast(ray, out hit, 2f, Mask, QueryTriggerInteraction.Ignore))
-        //    {
-        //        Debug.DrawLine(ray.origin, hit.point, Color.red);
-        //        isGrounded = true;
-        //        jumped = false;
-        //        jumps = 1;
-        //        rb.drag = groundDrag;
-        //    }
-        //    else
-        //    {
-        //        Debug.DrawLine(ray.origin, ray.origin + ray.direction * 2f, Color.green);
-        //        jumps = 0;
-        //        rb.drag = 0;
-        //    }
+        if (Physics.Raycast(ray, out hit, 1.5f, Mask, QueryTriggerInteraction.Ignore))
+        {
+            Debug.DrawLine(ray.origin, hit.point, Color.red);
+            isGrounded = true;
+            jumped = false;
+            jumps = 1;
+            rb.drag = groundDrag;
+        }
+        else
+        {
+            Debug.DrawLine(ray.origin, ray.origin + ray.direction * 1.5f, Color.green);
+            jumps = 0;
+            rb.drag = 0;
+        }
 
 
     }

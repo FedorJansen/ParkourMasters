@@ -251,7 +251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7298d553f3c4c634392b71872b9697b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Gravity: 50
+  Gravity: 10
 --- !u!135 &684777913
 SphereCollider:
   m_ObjectHideFlags: 0

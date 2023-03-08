@@ -58,12 +58,13 @@ public class mov : MonoBehaviour
     }
 
 
-    private void OnCollisionEnter(Collision other)
+    private void OnCollisionStay(Collision other)
     {
-        if (other.gameObject.CompareTag("Floor"))
-            CenterOfmass = other.gameObject.transform.position;
-        else
-            CenterOfmass = Vector3.down;
+        if (!isGrounded && other.gameObject.CompareTag("Floor"))
+        {
+            Debug.Log("go down");
+            rb.AddForce(0, -1f, 0);
+        }
     }
 
     public void PlayerDrag()
@@ -80,10 +81,9 @@ public class mov : MonoBehaviour
                 rb.AddForce(jump * jumpforce, ForceMode.Impulse);
                 jumped = true;
             }
-
         }
-
     }
+
     void PlayerInput()
     {
         horizontalInput = Input.GetAxisRaw("Horizontal");
@@ -94,27 +94,25 @@ public class mov : MonoBehaviour
     {
         MovePlayer();
 
+        Ray ray = new Ray(transform.position, Vector3.down);
+        //Debug.Log(CenterOfmass);
+        RaycastHit hit;
 
-            Ray ray = new Ray(transform.position, -CenterOfmass);
-        Debug.Log(CenterOfmass);
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit, 2, Mask, QueryTriggerInteraction.Ignore))
-            {
-                Debug.DrawLine(ray.origin, hit.point, Color.red);
-                isGrounded = true;
-                jumped = false;
-                jumps = 1;
-                rb.drag = groundDrag;
-            }
-            else
-            {
-                Debug.DrawLine(ray.origin, ray.origin + ray.direction * 2, Color.green);
-                jumps = 0;
-                rb.drag = 0;
-            }
-
-
+        if (Physics.Raycast(ray, out hit, 3f, Mask, QueryTriggerInteraction.Ignore))
+        {
+            Debug.DrawLine(ray.origin, ray.origin + ray.direction * 2, Color.red);
+            isGrounded = true;
+            jumped = false;
+            jumps = 1;
+            rb.drag = groundDrag;
+        }
+        else
+        {
+            Debug.DrawLine(ray.origin, ray.origin + ray.direction * 2, Color.green);
+            isGrounded = false;
+            jumps = 0;
+            rb.drag = 0.5f;
+        }
     }
 
     public void PlayerSpeed()
@@ -138,6 +136,8 @@ public class mov : MonoBehaviour
 
     public void MovePlayer()
     {
+        if (Mathf.Abs(rb.velocity.x) + Mathf.Abs(rb.velocity.z) > 10) return;
+        
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
         if (!walking)
         {
@@ -154,10 +154,6 @@ public class mov : MonoBehaviour
         {
             rb.AddForce(10f * (Speed - (Speed / 4)) * moveDirection.normalized, ForceMode.Force);
         }
-        else if (isGrounded)
-        {
-
-        }
         else if (!isGrounded)
         {
             rb.AddForce(10f * (Speed / 6) * moveDirection.normalized, ForceMode.Force);
@@ -169,9 +165,7 @@ public class mov : MonoBehaviour
          else
             Speed /= Sprint;
         }
-
     }
-
 }
 
 

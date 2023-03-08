@@ -57,7 +57,6 @@ public class mov : MonoBehaviour
 
     }
 
-
     private void OnCollisionStay(Collision other)
     {
         if (!isGrounded && other.gameObject.CompareTag("Floor"))
@@ -132,7 +131,6 @@ public class mov : MonoBehaviour
             curMaxSpeed = maxSpeed;
         }
     }
-
 
     public void MovePlayer()
     {
